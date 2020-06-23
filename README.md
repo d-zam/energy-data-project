@@ -15,8 +15,20 @@ Energy is sold by wholesalers across the US in same-day and day-ahead markets. S
 * Dash
 * Cron
 
+## File Descriptions
+
+1. downloads/spp
+ * SPP is the ISO this project is built on. As more ISO's are added, this folder will include more directories.
+ * Each source file is downloaded into the "Source" folder. Once it runs through the pipeline, it is moved to the   "Processed" folder.
+ 
+2. Scripts
+ * Includes .sh files to run each file download and process through the pipeline.
+ * Includes .sql files for SQL queries to run when moving data between file, stage, and fact tables.
+ * Includes Execute-SQL file to create a connection between EC2 Postgres and EC2 computer.
+
 ## Pipeline
 
+<img width="784" alt="Screen Shot 2020-06-22 at 6 44 24 PM" src="https://user-images.githubusercontent.com/56900996/85352572-4b713c00-b4d4-11ea-8d5f-9163962efff7.png">
 
 ## Sample Pipeline .sh File
 
@@ -36,28 +48,17 @@ Data is downloaded from web services (.csv) and using OpenWeather API (.json). E
 
 Once data is loaded into stage tables, it is then queried into formatted tables with a star schema model, as fact and dimension tables.
 
-** Insert star schema example
+There is a total of 3 fact tables, each with 4 connecting dimension tables.
+Below is an example of one schema:
+
+<img width="385" alt="Screen Shot 2020-06-22 at 6 39 57 PM" src="https://user-images.githubusercontent.com/56900996/85352653-6d6abe80-b4d4-11ea-9765-8ff72210a85d.png">
+
+
+## Frontend
 
 Finally, the data is queried into the FrontEndTable, where data is directly used to show the following visuals in Dash:
 
 ** Insert demo gif
 
 
-## File Descriptions
 
-1. downloads/spp
- * SPP is the ISO this project is built on. As more ISO's are added, this folder will include more directories.
- * Each source file is downloaded into the "Source" folder. Once it runs through the pipeline, it is moved to the   "Processed" folder.
- 
-2. Scripts
- * Includes .sh files to run each file download and process through the pipeline.
- * Includes .sql files for SQL queries to run when moving data between file, stage, and fact tables.
- * Includes Execute-SQL file to create a connection between EC2 Postgres and EC2 computer.
- 
- 
-## Front End
-
-Frontend is developed with Dash. Dash execute file is located in Dash folder.
-
-
--- Read-me in progress, update coming 6/22/2020
