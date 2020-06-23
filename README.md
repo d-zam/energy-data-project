@@ -20,7 +20,7 @@ Energy is sold by wholesalers across the US in same-day and day-ahead markets. S
 
 ## Sample Pipeline .sh File
 
-'''
+```
 #!/bin/sh
 
 current_time=$(date "+%Y.%m.%d-%H.%M.%S")
@@ -44,19 +44,19 @@ current_time=$(date "+%Y.%m.%d-%H.%M.%S")
 
 # Move file from "source" to "processed" folder on EC2
 mv $project_folder/downloads/spp/lmp/source/spp_lmp.csv $project_folder/downloads/spp/lmp/processed/spp_lmp.$current_time.csv
-'''
+```
 
 Data is downloaded from web services (.csv) and using OpenWeather API (.json). Each type of file is processed differently to load the data into Postgres. 
 
-'''
+```
 TRUNCATE TABLE spp_lmp_byloc;
 COPY spp_lmp_byloc(Interval,GMTIntervalEnd,Settlement_Location,Pnode,LMP,MLC,MCC,MEC)
 FROM '/home/ubuntu/insight/energy_pricing/downloads/spp/lmp/source/spp_lmp.csv' DELIMITER ',' CSV HEADER;
-'''
+```
 
 Once data is loaded into stage tables, it is then queried into formatted tables with a star schema model, as fact and dimension tables.
 
-'''
+```
 --Insert into Fact table: pk's from dim tables, lmpprice is the lmp from SPP North location and timeend is the gmttime field in spp_lmp.csv file
 INSERT INTO fact_lmp_byloc(
 iso_pk,
@@ -77,7 +77,7 @@ LEFT JOIN fact_lmp_byloc AS f
         AND f.iso_pk = dim_iso_pk
         WHERE f.setlmtloc_pk IS NULL;
 
-'''
+```
 
 ** Insert star schema example
 
