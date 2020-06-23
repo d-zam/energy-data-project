@@ -59,6 +59,8 @@ Below is an example of one schema:
 
 ## To Execute
 
+* Assuming all tables are already created in PostreSQL *
+
 1. Fill in database credentials in the following files:
  * /scripts/exec_sql.py
  * /energyUI/energyUI.py
