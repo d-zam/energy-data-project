@@ -7,12 +7,14 @@ sqlfile = sys.argv[1]
 sqltext = ""
 with open(sqlfile, 'r') as file:
 	sqltext = file.read()
+if (len(sys.argv) > 2):
+	sqltext = sqltext.replace("$1", sys.argv[2])
 #print(sqltext)
 
 try:
-        connection = psycopg2.connect(user = "postgres",
-                                    password = "enrg1994",
-                                    host = "127.0.0.1",
+        connection = psycopg2.connect(user = "*****",
+                                    password = "*****",
+                                    host = "*****",
                                     port = "5432",
                                     database = "StageEnergyPricing")
 
