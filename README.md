@@ -75,7 +75,7 @@ Below is an example of one schema:
 
 Finally, the data is queried into the FrontEndTable, where data is directly used to show the following visuals in Dash:
 
-![](powerline_demo.gif)
+![](powerline_demo.gif | width=800)
 
 
 
