@@ -17,11 +17,12 @@ Energy is sold by wholesalers across the US in same-day and day-ahead markets. S
 
 ## File Descriptions
 
-1. downloads/spp
+1. downloads:
  * SPP is the ISO this project is built on. As more ISO's are added, this folder will include more directories.
+ * Weather downloads are in a separate folder within "downloads"
  * Each source file is downloaded into the "Source" folder. Once it runs through the pipeline, it is moved to the   "Processed" folder.
  
-2. Scripts
+2. scripts
  * Includes .sh files to run each file download and process through the pipeline.
  * Includes .sql files for SQL queries to run when moving data between file, stage, and fact tables.
  * Includes Execute-SQL file to create a connection between EC2 Postgres and EC2 computer.
@@ -53,6 +54,19 @@ Below is an example of one schema:
 
 <img width="385" alt="Screen Shot 2020-06-22 at 6 39 57 PM" src="https://user-images.githubusercontent.com/56900996/85352653-6d6abe80-b4d4-11ea-9765-8ff72210a85d.png">
 
+## To Execute:
+
+1. Fill in database credentials in the following files:
+ * /scripts/exec_sql.py
+ * /energyUI/energyUI.py
+ 
+2. Copy contents of crontab file into local Cron
+
+3. To load frontend database, run the following code:
+``` sudo python /scripts/fill_frontend.sh ```
+
+4. To view Dash frontend, run the following code:
+``` sudo python /energyUI/energyUI.py ```
 
 ## Frontend
 
